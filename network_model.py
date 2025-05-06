@@ -293,6 +293,8 @@ class Network:
     def __repr__(self):
         return f"Network(id={self.id}, name={self.name})"
 
+
+# Exemplo de uso: Cálculo da matriz Ybarra para um sistema de 3 barras
 if __name__ == "__main__":
     net = Network()
     # Criação das barras
