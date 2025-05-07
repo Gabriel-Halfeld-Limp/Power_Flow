@@ -1,6 +1,4 @@
-from network_model import Network, Bus, Line, Load, Generator
-import pandas as pd
-import numpy as np
+
 
 net = Network()
 
@@ -67,8 +65,3 @@ lines = [
     Line(id=19, from_bus=buses[11], to_bus=buses[12], r=0.22092, x=0.19988, b_half=0.0),                    
     Line(id=20, from_bus=buses[12], to_bus=buses[13], r=0.17093, x=0.34802, b_half=0.0),                    
 ]
-
-Y = net.y_bus()
-
-Y = pd.DataFrame(Y)
-print(Y)
