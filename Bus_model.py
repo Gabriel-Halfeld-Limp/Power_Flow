@@ -1,7 +1,8 @@
-
-from dataclasses import dataclass, field
-from typing import List, Optional, ClassVar
+from __future__ import annotations
 import numpy as np
+from dataclasses import dataclass, field
+from typing import ClassVar, List, Optional
+
 
 @dataclass
 class Bus:
@@ -70,24 +71,3 @@ class Bus:
                  f"shunt={self.shunt:.3f} pu, "
                  f"gen={len(self.generators)}, load={len(self.loads)})")
     
-
-# Exemplo de uso da classe Bus
-if __name__ == "__main__":
-    # Exemplo fictício de uma classe Network, substitua por sua própria implementação
-    class Network:
-        def __init__(self):
-            self.buses = []
-
-    # Criando uma rede
-    net = Network()
-
-    # Criando instâncias de Bus
-    bus1 = Bus(network=net, id=1, name="Bus 1", bus_type="PV", v=1.02, theta=0.0, Sb=100.0, Sh=0.0)
-    bus2 = Bus(network=net, id=2, name="Bus 2", bus_type="PQ", v=1.0, theta=0.0, Sb=100.0, Sh=0.0)
-    
-    # Exibindo informações sobre os busses
-    print(bus1)
-    print(bus2)
-
-    # Acessando a lista de buses na rede
-    print(f"Buses in network: {net.buses}")

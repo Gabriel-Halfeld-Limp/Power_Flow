@@ -1,12 +1,10 @@
-from __future__ import annotations
-from dataclasses import dataclass, field
-from typing import Optional, List
 import numpy as np
-
-from Bus_model.Bus import Bus
-from Line_model.Line import Line
-from Load_model.Load import Load
-from Generator_model.Generator import Generator
+from dataclasses import dataclass, field
+from typing import List, Optional
+from Bus_model import Bus
+from Line_model import Line
+from Load_model import Load
+from Generator_model import Generator
 
 @dataclass
 class Network:
@@ -41,3 +39,8 @@ class Network:
     
     def __repr__(self):
         return f"Network(id={self.id}, name={self.name})"
+    
+if __name__ == "__main__":
+    # Create a network
+    net = Network(id=1, name="Test Network")
+    print(net)

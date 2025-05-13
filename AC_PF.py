@@ -1,5 +1,5 @@
 import numpy as np
-from models.Network_model.Network import Network  # Ajuste o caminho conforme a localização do arquivo Network.py
+from Network_model import Network
 
 class AC_PF:
     def __init__(self, network: Network):

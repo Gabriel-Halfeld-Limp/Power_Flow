@@ -1,9 +1,7 @@
-from __future__ import annotations
-from dataclasses import dataclass
-from Bus_model.Bus import Bus
-from typing import Optional, ClassVar, Dict
 import numpy as np
-
+from dataclasses import dataclass
+from typing import Optional, ClassVar, Dict
+from Bus_model import Bus
 
 @dataclass
 class Line:
@@ -98,4 +96,4 @@ class Line:
         return [((i, i), Yff), ((i, j), Yft), ((j, i), Ytf), ((j, j), Ytt)]
 
     def __repr__(self):
-        return (f"Line(id={self.name}, Barra para:{self.from_bus.id}, Barra de:{self.to_bus.id}, r={self.resistance:.4f}, x={self.reactance:.4f})")
+        return (f"Line(id={self.name}, Barra para:{self.from_bus.id}, Barra de:{self.to_bus.id}, r={self.resistance:.4f}, x={self.reactance:.4f}, tap_ratio={self.tap_ratio:.4f}, tap_phase={self.tap_phase:.4f}, b_half={self.shunt_admittance_half:.4f})")
