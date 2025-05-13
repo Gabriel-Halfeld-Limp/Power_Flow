@@ -5,14 +5,14 @@ Este projeto implementa uma ferramenta modular em Python para modelagem de redes
 ## 🧠 Funcionalidades
 
 - Leitura de arquivos `.PWF` com dados do sistema elétrico.
+- Construção automática de redes através do `PWF_Network_Builder`
 - Modelagem orientada a objetos de:
   - Barras (Bus)
   - Linhas de transmissão (Line)
   - Cargas (Load)
   - Geradores (Generator)
-- Construção automática de redes através do `PWF_Network_Builder`.
-- Cálculo da matriz de admitância `Ybus`.
-- Suporte a análises de fluxo de potência em ambiente interativo (Jupyter Notebook).
+  - Rede (Network) 
+- Cálculo do Fluxo AC por Newton-Raphson
 
 ## 🗂️ Estrutura do Projeto
 
