@@ -53,7 +53,7 @@ Power_Flow/
     pip install -r requirements.txt
 
 4. Execute o arquivo principal:
-    python main.py
     abra main.ipynb e altere o caminho do arquivo .PWF para o sistema desejado.
     caminho = 'pwf_systems/IEEE14.pwf'
+    eexecute o notebook.
 
