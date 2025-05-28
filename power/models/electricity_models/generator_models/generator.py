@@ -1,4 +1,4 @@
-from Bus_model import Bus
+from power.models.electricity_models.bus_models import *
 from dataclasses import dataclass
 from typing import ClassVar, Optional
 

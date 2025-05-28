@@ -1,10 +1,5 @@
-from pwf_reader import PWF_Reader
-from Network_model import Network
-from Bus_model import Bus
-from Line_model import Line
-from Load_model import Load
-from Generator_model import Generator
-
+from .pwf_reader import PWF_Reader
+from power.models.electricity_models import *
 
 class PWF_Network_Builder:
     """

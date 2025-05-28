@@ -1,10 +1,11 @@
 import numpy as np
 from dataclasses import dataclass, field
 from typing import List, Optional
-from Bus_model import Bus
-from Line_model import Line
-from Load_model import Load
-from Generator_model import Generator
+
+from power.models.electricity_models.bus_models import *
+from power.models.electricity_models.line_models import *
+from power.models.electricity_models.load_models import *
+from power.models.electricity_models.generator_models import *
 
 @dataclass
 class Network:

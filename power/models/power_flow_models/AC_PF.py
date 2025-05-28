@@ -1,5 +1,5 @@
 import numpy as np
-from Network_model import Network
+from power.models.electricity_models.network_models import *
 
 class AC_PF:
     def __init__(self, network: Network):

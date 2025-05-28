@@ -1,7 +1,7 @@
 import numpy as np
 from dataclasses import dataclass
 from typing import Optional, ClassVar, Dict
-from Bus_model import Bus
+from power.models.electricity_models.bus_models import *
 
 @dataclass
 class Line:

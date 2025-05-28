@@ -1,0 +1,70 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+.ENV/
+.env/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VSCode settings
+.vscode/
+
+# Pytest cache
+.pytest_cache/
+.cache/
+
+# MyPy cache
+.mypy_cache/
+
+# System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# Environment/config files
+*.env
+*.ini
+*.cfg
+
+# Data files
+*.sqlite3
+*.db
+*.pkl
+*.h5
+*.csv
+
+# Temporary files
+*.bak
+*.swp
+*.tmp
