@@ -1,6 +1,7 @@
 from power.models.electricity_models.bus_models import *
-from dataclasses import dataclass
-from typing import ClassVar, Optional
+from dataclasses import dataclass, field
+from typing import ClassVar, Optional, List
+import numpy as np
 
 @dataclass
 class Load:
@@ -10,7 +11,10 @@ class Load:
 
     pb: float = 1.0
     p_input: float = 0.0
+    #Inserção de curva de carga
+    p_input_series: np.ndarray = field(default_factory=lambda: np.array([]))
     q_input: float = 0.0
+    power_factor: float = 1.0
     p_max_input: float = float('inf')
     p_min_input: float = 0.0
     q_max_input: Optional[float] = None
@@ -40,11 +44,19 @@ class Load:
     @property
     def p(self) -> float:
         return self.p_input / self.pb
+    
+    @property
+    def p_series(self) -> np.ndarray:
+        return self.p_input_series/ self.pb
 
     @property
     def q(self) -> float:
         return self.q_input / self.pb
-
+    
+    @property
+    def q_series(self) -> np.ndarray:
+        return self.p_series * np.tan(np.arccos(self.power_factor))
+    
     @property
     def p_max(self) -> float:
         return self.p_max_input / self.pb

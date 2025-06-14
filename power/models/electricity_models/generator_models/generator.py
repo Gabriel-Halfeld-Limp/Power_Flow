@@ -1,6 +1,7 @@
 from power.models.electricity_models.bus_models import *
 from dataclasses import dataclass
 from typing import ClassVar, Optional
+import numpy as np
 
 @dataclass
 class Generator:
@@ -13,11 +14,12 @@ class Generator:
     q_input: float = 0.0
     p_max_input: float = float('inf')
     p_min_input: float = 0.0
-    q_max_input: Optional[float] = None
-    q_min_input: Optional[float] = None
+    q_max_input: Optional[float] = 99999
+    q_min_input: Optional[float] = -99999
     cost_a_input: float = 0.0
     cost_b_input: float = 0.0
     cost_c_input: float = 0.0
+    ramp_input: float = 0.0
 
     _id_counter: ClassVar[int] = 0
 
@@ -72,6 +74,10 @@ class Generator:
     @property
     def cost_c(self) -> float:
         return self.cost_c_input * self.pb
+    
+    @property
+    def ramp(self) -> float:
+        return self.ramp_input / self.pb
 
     def __repr__(self):
         return (f"Generator(id={self.id}, bus={self.bus.id}, p={self.p:.3f}, q={self.q:.3f}, "
