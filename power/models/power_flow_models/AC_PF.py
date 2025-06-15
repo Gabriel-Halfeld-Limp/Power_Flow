@@ -207,8 +207,8 @@ class AC_PF:
         """
         flows = []
         for line in self.network.lines:
-            i = self.bus_idx[line.from_bus.id]
-            j = self.bus_idx[line.to_bus.id]
+            j = self.bus_idx[line.from_bus.id]
+            i = self.bus_idx[line.to_bus.id]
 
             theta_i = np.deg2rad(self.theta[i])
             theta_j = np.deg2rad(self.theta[j])
@@ -218,7 +218,8 @@ class AC_PF:
             if line.reactance == 0:
                 raise ValueError(f"Line {line.id} has zero reactance, cannot calculate flow.")
             
-            flow = (V_i * V_j * (self.G[i, j] * np.cos(theta_i - theta_j) + self.B[i, j] * np.sin(theta_i - theta_j)))
+            #flow = (V_i * V_j * (self.G[i, j] * np.cos(theta_i - theta_j) + self.B[i, j] * np.sin(theta_i - theta_j)))
+            flow = V_i**2 * self.G[i, j] - V_i * V_j * (self.G[i, j] * np.cos(theta_i - theta_j) + self.B[i, j] * np.sin(theta_i - theta_j))
             flows.append(flow)
         self.flows = np.array(flows)
         return self.flows
