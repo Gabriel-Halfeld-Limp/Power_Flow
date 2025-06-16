@@ -97,8 +97,6 @@ class Network:
             ref_bus (Bus, optional): The bus to reference the CTDF to. If None, the CTDF is not referenced.
             z_tie (complex, optional): The impedance of a tie line. If None, no tie line is considered.
         """
-        self.ACtoDC()
-
         if ref_bus is None:
             Zbus = self.get_Z_bus()
         elif z_tie is None:
@@ -116,9 +114,13 @@ class Network:
         for branch in self.lines:
             branch.r = 0
             branch.b_half = 0
+            branch.tap_ratio = 1
+            branch.phase_shift = 0
 
         for bus in self.buses:
-            bus.Sh = 0      
+            bus.Sh = 0  
+
+        self.buses[0].Sh = 0.1    
 
     def __repr__(self):
         return f"Network(id={self.id}, name={self.name})"

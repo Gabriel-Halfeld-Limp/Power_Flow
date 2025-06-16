@@ -199,7 +199,7 @@ class AC_PF:
         self.V = V
         self.theta = np.rad2deg(theta)
 
-    def get_line_flows(self):
+    def _get_line_flows(self):
         """
         Calculate the line flows based on the solved voltage angles and magnitudes.
         Returns:
@@ -223,3 +223,41 @@ class AC_PF:
             flows.append(flow)
         self.flows = np.array(flows)
         return self.flows
+
+    def get_line_flows(self):
+        """
+        Calcula os fluxos de potência ativa Pij (de i para j) e Pji (de j para i) para cada linha.
+        Retorna:
+            flows_from (np.ndarray): Fluxos do lado from_bus (Pij).
+            flows_to (np.ndarray): Fluxos do lado to_bus (Pji).
+        """
+        flows_from = []
+        flows_to = []
+        V = self.V
+        theta = self.theta
+        for line in self.network.lines:
+            i = self.bus_idx[line.from_bus.id]
+            j = self.bus_idx[line.to_bus.id]
+            r = getattr(line, 'r', 0.0)
+            x = getattr(line, 'x', 0.0)
+            b_shunt = getattr(line, 'b_half', 0.0)
+            z = r + 1j * x
+            y = 1 / z if z != 0 else 0
+            g = np.real(y)
+            b = np.imag(y)
+
+            Vi = V[i]
+            Vj = V[j]
+            thetai = np.deg2rad(theta[i])
+            thetaj = np.deg2rad(theta[j])
+            delta = thetai - thetaj
+
+            # Fluxo de potência ativa de i para j (Pij)
+            Pij = Vi**2 * g - Vi * Vj * (g * np.cos(delta) + b * np.sin(delta)) 
+
+            # Fluxo de potência ativa de j para i (Pji)
+            Pji = Vj**2 * g - Vj * Vi * (g * np.cos(-delta) + b * np.sin(-delta))
+
+            flows_from.append(Pij)
+            flows_to.append(Pji)
+        return np.array(flows_from), np.array(flows_to)
