@@ -16,7 +16,7 @@ class sauer6bus(Network):
         Creates the buses for the Sauer 6 bus system.
         """
         self.buses = [
-            Bus(self, id=1, bus_type='Slack', v=1.05, theta=0.0),
+            Bus(self, id=1, bus_type='Slack', v=1.05, theta=0.0, Sh=1),
             Bus(self, id=2, bus_type='PV', v=1.10, theta=0.0),
             Bus(self, id=3, bus_type='PQ', v=1.00, theta=0.0),
             Bus(self, id=4, bus_type='PQ', v=1.00, theta=0.0),

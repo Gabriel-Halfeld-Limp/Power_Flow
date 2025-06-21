@@ -1,13 +1,17 @@
 from __future__ import annotations
 import numpy as np
 from dataclasses import dataclass, field
-from typing import ClassVar, List, Optional
+from typing import ClassVar, List, Optional, TYPE_CHECKING
 
+if TYPE_CHECKING:
+    from power.models.electricity_models.network_models.network import *
+    from power.models.electricity_models.load_models.load import *
+    from power.models.electricity_models.generator_models.generator import *
 
 @dataclass
 class Bus:
     network: "Network"
-    id: Optional[int] = None
+    id: int = 99999999
     name: Optional[str] = None
     bus_type: str = "PQ"  # "slack", "PQ", "PV"
     v: float = 1.0 # in pu
@@ -22,11 +26,11 @@ class Bus:
     _id_counter: ClassVar[int] = 0
 
     def __post_init__(self):
-        if self.id is None:
+        if self.id == 99999999:
+            assert self.id is not None
             self.id = Bus._id_counter
             Bus._id_counter += 1
         else:
-            self.id = int(self.id)
             if self.id >= Bus._id_counter:
                 Bus._id_counter = self.id + 1
 

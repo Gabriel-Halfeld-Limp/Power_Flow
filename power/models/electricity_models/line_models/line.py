@@ -81,7 +81,7 @@ class Line:
         """Fluxo máximo de potência ativa (pu)"""
         return self.flow_max / self.pb
 
-    def get_admittance_elements(self, bus_index: Dict[str, int]):
+    def get_admittance_elements(self, bus_index: Dict[int, int]):
         """Gera os elementos de admitância baseados nos parâmetros da linha"""
         y = self.admittance
         b = self.shunt_admittance_half * 1j
@@ -100,7 +100,7 @@ class Line:
             Ytt = y + b
         return [((i, i), Yff), ((i, j), Yft), ((j, i), Ytf), ((j, j), Ytt)]
 
-    def get_dfactors(self, Zbus: np.ndarray, bus_index: Dict[str, int]) -> np.ndarray:
+    def get_dfactors(self, Zbus: np.ndarray, bus_index: Dict[int, int]) -> np.ndarray:
         """
         Calculates the Current Distribution Factors (T_factors) for this line,
         referenced to the ground bus.

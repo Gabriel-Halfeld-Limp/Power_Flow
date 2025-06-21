@@ -1,59 +1,59 @@
-# Power_Flow
+# CTDF-for-linear-load-methods
 
-Este projeto implementa uma ferramenta modular em Python para modelagem de redes elétricas e simulação de fluxo de potência. Ele utiliza dados extraídos de arquivos `.PWF` e constrói estruturas internas que representam barras, linhas de transmissão, cargas e geradores.
+Implementação dos Current Transfer Distribution Factors (CTDF) de Sauer para análise de fluxos de potência em redes elétricas.
 
-## 🧠 Funcionalidades
+## Descrição
 
-- Leitura de arquivos `.PWF` com dados do sistema elétrico.
-- Construção automática de redes através do `PWF_Network_Builder`
-- Modelagem orientada a objetos de:
-  - Barras (Bus)
-  - Linhas de transmissão (Line)
-  - Cargas (Load)
-  - Geradores (Generator)
-  - Rede (Network) 
-- Cálculo do Fluxo AC por Newton-Raphson
+Este projeto contém uma implementação dos métodos de fluxo de potência AC e DC, além do cálculo dos fatores de distribuição de corrente (CTDFs) para diferentes sistemas de barras (IEEE 14 barras, Sauer 6, 11, etc). O código permite comparar resultados de fluxo de potência AC, DC e CTDF, além de analisar o impacto de perturbações de carga.
 
-## 🗂️ Estrutura do Projeto
+Os experimentos e gráficos principais estão organizados no notebook [`main.ipynb`](main.ipynb).
 
-Power_Flow/
-│
-├── main.ipynb              # Notebook principal (executa leitura de arquivos .PWF)
-├── Complete_Code.ipynb     # Todas as classes e exemplos combinados
-├── exemples.ipynb          # Exemplos com sistemas 3Bus e 14Bus (dados no código)
-│
-├── Bus_model.py            # Classe Bus
-├── Line_model.py           # Classe Line
-├── Load_model.py           # Classe Load
-├── Generator_model.py      # Classe Generator
-├── Network_model.py        # Classe principal (constrói rede e calcula Ybus)
-├── AC_PF.py                # Funções para cálculo de fluxo de potência AC
-├── pwf_reader.py           # Leitura de arquivos .PWF
-├── net_builder.py          # Constrói a rede automaticamente
-│
-├── pwf_systems/            # Diretório com arquivos .PWF
-│   └── IEEE14.pwf          # Exemplo de sistema IEEE 14 barras
-│
-├── requirements.txt        # Dependências do projeto
-└── README.md               # Documentação do projeto
+## Estrutura do Projeto
 
-## ▶️ Como executar
+- `main.ipynb`: Notebook principal com exemplos, gráficos e análises.
+- `requirements.txt`: Lista de dependências Python necessárias.
+- `power/`: Implementação dos modelos elétricos, fluxo de potência e CTDF (Montado em Network e elementos calculados em Line).
+- `systems/`: Definição dos sistemas de barras (IEEE14, Sauer6, Sauer11, etc).
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/Power_Flow.git
-   cd Power_Flow
+## Instalação
 
-2. Crie um ambiente virtual (opcional):
-    python -m venv venv
-    source venv/bin/activate
-    venv\Scripts\activate
+1. **Clone o repositório:**
 
-3. Instale as dependências:
-    pip install -r requirements.txt
+   ```sh
+   git clone <URL_DO_REPOSITORIO>
+   cd CTDF-for-linear-load-methods
+   ```
 
-4. Execute o arquivo principal:
-    abra main.ipynb e altere o caminho do arquivo .PWF para o sistema desejado.
-    caminho = 'pwf_systems/IEEE14.pwf'
-    eexecute o notebook.
+2. **Crie um ambiente virtual (opcional, mas recomendado):**
 
+   ```sh
+   python -m venv venv
+   source venv/bin/activate  # Linux/Mac
+   venv\Scripts\activate     # Windows
+   ```
+
+3. **Instale as dependências:**
+
+   ```sh
+   pip install -r requirements.txt
+   ```
+
+## Como rodar
+
+O projeto foi desenvolvido para ser executado em um ambiente Jupyter Notebook.
+
+2. **Abra o arquivo [`main.ipynb`](main.ipynb).**
+
+3. **Execute as células do notebook para reproduzir os experimentos, gráficos e análises.**
+
+## Observações
+
+- O notebook utiliza as bibliotecas `numpy`, `matplotlib`, `pandas` e outras listadas em [`requirements.txt`](requirements.txt).
+- Os sistemas de barras estão definidos em [`systems/`](systems/) e os modelos elétricos em [`power/`](power/).
+- Para adicionar novos sistemas ou métodos, basta seguir a estrutura dos arquivos existentes.
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT. Veja o arquivo [`LICENSE`](LICENSE) para mais detalhes.
+
+---

@@ -11,7 +11,7 @@ class test2bus(Network):
     def _create_buses(self):
         # Create buses
         self.buses = [
-            Bus(self, id=1, bus_type='Slack', v=1.00, theta=0.0, Sh=0.1),
+            Bus(self, id=1, bus_type='Slack', v=1.00, theta=0.0, Sh=1),
             Bus(self, id=2, bus_type='PQ', v=1.00, theta=0.0),
         ]
 

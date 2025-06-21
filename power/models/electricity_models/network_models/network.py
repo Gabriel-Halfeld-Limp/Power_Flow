@@ -40,10 +40,10 @@ class Network:
         return ybus
         
     def get_G(self):
-        return self.y_bus().real
+        return np.asarray(self.y_bus(), dtype=np.complex128).real
     
     def get_B(self):
-        return self.y_bus().imag
+        return np.asarray(self.y_bus(), dtype=np.complex128).imag
 
     def get_Z_bus(self, ref_bus: Optional[Bus] = None) -> np.ndarray:
         """
@@ -115,12 +115,13 @@ class Network:
             branch.r = 0
             branch.b_half = 0
             branch.tap_ratio = 1
-            branch.phase_shift = 0
+            branch.tap_phase = 0
 
         for bus in self.buses:
-            bus.Sh = 0  
+            if bus.bus_type != 'Slack':
+                bus.Sh = 0  
 
-        self.buses[0].Sh = 0.1    
+        #self.buses[0].Sh = 0.1    
 
     def __repr__(self):
         return f"Network(id={self.id}, name={self.name})"
